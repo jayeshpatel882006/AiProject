@@ -1,0 +1,36 @@
+services:
+  # Backend API
+  backend:
+    build: ./backend
+    container_name: nexus-ai-backend
+    restart: always
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost
+    ports:
+      - "5000:5000"
+    networks:
+      - nexus-network
+
+  # Frontend Web App
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_API_URL=http://localhost:5000/api
+    container_name: nexus-ai-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - nexus-network
+
+networks:
+  nexus-network:
+    driver: bridge
