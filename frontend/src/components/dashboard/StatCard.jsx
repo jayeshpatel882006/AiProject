@@ -7,7 +7,7 @@ const StatCard = ({ label, value, icon, color, suffix = '', loading }) => {
   useEffect(() => {
     if (loading || !ref.current) return;
     const target = Number(value) || 0;
-    let start = 0;
+    // let start = 0;
     const duration = 1200;
     const startTime = performance.now();
     const step = (now) => {

@@ -32,7 +32,7 @@ const Dashboard = () => {
         const generate = history.filter(r => r.type === 'generate').length;
 
         // Mock daily usage for last 7 days based on data
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        // const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const last7Days = [...Array(7)].map((_, i) => {
           const d = new Date();
           d.setDate(d.getDate() - (6 - i));
